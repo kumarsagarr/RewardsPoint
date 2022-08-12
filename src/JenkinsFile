@@ -1,0 +1,47 @@
+pipeline {
+    agent {
+        label ''
+    }
+    environment {
+        CI = true
+    }
+    stages {
+        stage('Code in Subdir') { 
+            steps {
+                sh  'dir name'            
+            }
+        }
+        stage('Build') { 
+            steps {
+                sh  ''' cd /dir
+                        echo 'set proxy'
+                        npm install --legacy-peer-deps
+                        echo 'npm install complete'
+                    '''            
+            }
+        }
+        stage('Test') {
+           steps {
+               sh '''
+                      cd /dir
+                      echo run test cases
+                      echo $PWD
+                     npm run test
+                      echo "test Complete"
+                  '''
+           }
+        }
+        stage('Deploy') {
+            steps {
+                sh  '''
+                        cd /dir 
+                        npm run clean
+                        echo "run build command"
+                        npm run build
+                        pm2 reload 21
+                        echo "Deployed"
+                    '''
+            }
+        }
+    }
+}
