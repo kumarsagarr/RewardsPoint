@@ -15,3 +15,19 @@ export const makeAPIRequestCall = (url, method, reqBody) =>{
         data: reqBody
       });
 }
+
+
+
+export const makeAPIRequestCalls = (url, method, reqBody) =>{
+  const baseUrl = 'http://localhost:5000/' + url
+   const Headers = {
+    'content-type':'application/json'
+  }
+  return  axios({
+        headers: Headers,
+        method: method,
+        url:  baseUrl,
+        data: reqBody
+      });
+}
+

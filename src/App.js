@@ -5,6 +5,7 @@ import { makeAPIRequestCall } from "./Services/service";
 import ClearIcon from "@mui/icons-material/Clear";
 import { SearchOutlined } from "@mui/icons-material";
 import MovieListCard from "./MovieListCard";
+import ShowCase from './ShowCase'
 
 function App() {
   const [list, setList] = React.useState([]);
@@ -16,7 +17,6 @@ function App() {
     if (message.includes("Success")) {
       setList(data);
     }
-    console.log("movieList", movieList);
   };
 
   React.useEffect(() => {
@@ -62,11 +62,12 @@ function App() {
 
   return (
     <div className="App">
-      <SearchBox />
+      {/* <SearchBox />
       <Grid container spacing={2}>
         {list &&
           list.map((item) => <MovieListCard key={item.id} item={item} />)}
-      </Grid>
+      </Grid> */}
+      <ShowCase/>
     </div>
   );
 }
